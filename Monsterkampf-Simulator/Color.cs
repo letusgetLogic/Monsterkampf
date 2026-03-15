@@ -1,5 +1,8 @@
 ﻿namespace Monsterkampf_Simulator;
 
+/// <summary>
+/// Schriftfarbe und Hintergrundfarbe für die Konsole
+/// </summary>
 class Color
 {
     /// <summary>

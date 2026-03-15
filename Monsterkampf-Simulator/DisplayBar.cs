@@ -3,9 +3,9 @@
 class DisplayBar
 {
     private static readonly int BarSpace = 26; //        |     Platz für Anzeige-Balken     | 
-    //                                                                     |
-    // Anzeige Beispiel:  HP 100/200    |/////////_________|                HP...
-    //                                                                     |
+    //                                                                                      |
+    // Anzeige Beispiel:                    HP 100/200   |/////////_________|                HP...
+    //                                                                      |
     private static int _barValue;         //             |  Wert  |         |               |
     private static int _barLength;         //            |      Länge       |               |
     private static float _floatValue; //  Momentane Wert
@@ -83,13 +83,14 @@ class DisplayBar
     static void PrintBar()
     {
         /*                              |    Platz für Anzeige-Balken      |
-                                                                       |
-    Anzeige Beispiel:  HP 100/200   |///////___________|                HP...
-                                                                       |
-                                    | Wert |           |               |
-                                    |      |Unterstrich|               |
-                                    |      Länge       |               |
-     */
+                                                                           |
+        Anzeige Beispiel:  HP 100/200   |///////___________|                HP...
+                           ATK 300/200  |//////////////////|////////       |
+
+                                        | Wert |           |               |
+                                        |      |Unterstrich|               |
+                                        |      Länge       |               |
+        */
 
         char[] charField = new char[BarSpace];
 
