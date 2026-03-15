@@ -5,10 +5,20 @@ class Input
     /// <summary>
     /// Cursor auf die erste Stelle der obere Zeile setzen.
     /// </summary>
-    public static void ReplaceInput()
+    public static void SetCursorAtTopLine()
     {
         int previosLineCursor = Console.CursorTop - 1;  
         Console.SetCursorPosition(0, previosLineCursor);
+    }
+
+    /// <summary>
+    /// Leert die Zeile und setzt den Cursor auf die erste Stelle der Zeile.
+    /// </summary>
+    public static void ClearCurrentLine()
+    {
+        Console.SetCursorPosition(0, Console.CursorTop);
+        Console.Write(new string(' ', Console.WindowWidth));
+        Console.SetCursorPosition(0, Console.CursorTop);
     }
 
     /// <summary>

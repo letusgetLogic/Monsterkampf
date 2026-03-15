@@ -31,11 +31,11 @@ class Program
 
     private static MonsterBase? _monster1;
     private static MonsterBase? _monster2;
-    
+
     private static int _monsterChoice1;
     private static int _monsterChoice2;
- 
-    
+
+
     /// <summary>
     /// Hauptmethode, in der er für die Spielwiederholung sich selbst aufruft.
     /// </summary>
@@ -47,7 +47,7 @@ class Program
         PhaseMonsterChoice();
         PhaseAttributesChoice();
         PhaseWinnerChoice();
-        
+
         CoordinateSystem.InitializeArray(_monster1);
         CoordinateSystem.InitializeArray(_monster2);
 
@@ -90,7 +90,7 @@ class Program
     /// </summary>
     private static void PhaseAttributesChoice()
     {
-        while (SetAttribute == false) 
+        while (SetAttribute == false)
         {
             AskAttributes();
             Input.AskConfirmAttribute();
@@ -103,7 +103,7 @@ class Program
     /// </summary>
     private static void PhaseWinnerChoice()
     {
-        while (SetWinner == false) 
+        while (SetWinner == false)
         {
             AskAttributes();
             AskWinner();
@@ -124,7 +124,8 @@ class Program
         _monster1 = CreateMonster(_monsterChoice1); // Erstellung vom Konstruktor.
 
         // Ausgabe in der Konsole.
-        Input.ReplaceInput();
+        Input.ClearCurrentLine();
+        Input.SetCursorAtTopLine();
         Console.WriteLine(_monster1.Race);
         _monster1.ShowSkill();
 
@@ -136,7 +137,8 @@ class Program
         _monster2 = CreateMonster(_monsterChoice2); // Erstellung vom Konstruktor.
 
         // Ausgabe in der Konsole.
-        Input.ReplaceInput(); 
+        Input.ClearCurrentLine();
+        Input.SetCursorAtTopLine();
         Console.WriteLine(_monster2.Race);
         _monster2.ShowSkill();
     }
@@ -146,9 +148,14 @@ class Program
     /// </summary>
     public static void InputMonsterChoice1()
     {
+        bool isInvalidInput = false;
         while (!(_monsterChoice1 >= 1 && _monsterChoice1 < Races.Length))
         {
-            Console.WriteLine();
+            if (isInvalidInput)
+                Console.Write("Die Eingabe ist nicht gültig!");
+            else
+                Console.WriteLine();
+
             Input.NewPlayerInput(); // Leert die obere Zeile und setzt den Cursor am Anfang der Zeile.
 
             string? input = Console.ReadLine();
@@ -156,6 +163,8 @@ class Program
             int.TryParse(input, out _monsterChoice1);
 
             if (input == "z") _monsterChoice1 = Rnd.Next(1, Races.Length); // Zufall-Wahl
+
+            isInvalidInput = true; // Der Boolean wird ignoriert, wenn die Eingabe gültig ist, weil die while-Schleife nicht mehr ausgeführt wird.
         }
     }
 
@@ -164,9 +173,14 @@ class Program
     /// </summary>
     public static void InputMonsterChoice2()
     {
+        bool isInvalidInput = false;
         while (!(_monsterChoice2 >= 1 && _monsterChoice2 < Races.Length && _monsterChoice2 != _monsterChoice1))
         {
-            Console.WriteLine();
+            if (isInvalidInput)
+                Console.Write("Die Eingabe ist nicht gültig!");
+            else
+                Console.WriteLine();
+
             Input.NewPlayerInput(); // Leert die obere Zeile und setzt den Cursor am Anfang der Zeile.
 
             string? input = Console.ReadLine();
@@ -179,6 +193,8 @@ class Program
                     _monsterChoice2 = Rnd.Next(1, Races.Length); // Zufall-Wahl
                 while (_monsterChoice2 == _monsterChoice1);
             }
+
+            isInvalidInput = true; // Der Boolean wird ignoriert, wenn die Eingabe gültig ist, weil die while-Schleife nicht mehr ausgeführt wird.
         }
     }
 
@@ -219,7 +235,7 @@ class Program
         Output.PrintDefaultAttributes();
         Console.WriteLine("Gib die Attributen-Werte für die Monster ein: (z für Zufallswerte)");
         Console.WriteLine();
-        
+
         GetSetAttributes(_monster1);
         GetSetAttributes(_monster2);
     }
@@ -273,7 +289,7 @@ class Program
                 {
                     monster.HP = (float)Rnd.NextDouble() * (MaxHp - MinHp) + MinHp;
 
-                    Input.ReplaceInput(); // Cursor auf die erste Stelle der obere Zeile setzen.
+                    Input.SetCursorAtTopLine(); // Cursor auf die erste Stelle der obere Zeile setzen.
 
                     Console.WriteLine((int)monster.HP);
                 }
@@ -308,7 +324,7 @@ class Program
                 {
                     monster.AP = (float)Rnd.NextDouble() * (MaxAp - MinAp) + MinAp;
 
-                    Input.ReplaceInput(); // Cursor auf die erste Stelle der obere Zeile setzen.
+                    Input.SetCursorAtTopLine(); // Cursor auf die erste Stelle der obere Zeile setzen.
 
                     Console.WriteLine((int)monster.AP);
                 }
@@ -343,7 +359,7 @@ class Program
                 {
                     monster.DP = (float)Rnd.NextDouble() * (MaxDp - MinDp) + MinDp;
 
-                    Input.ReplaceInput(); // Cursor auf die erste Stelle der obere Zeile setzen.
+                    Input.SetCursorAtTopLine(); // Cursor auf die erste Stelle der obere Zeile setzen.
 
                     Console.WriteLine((int)monster.DP);
                 }
@@ -377,7 +393,7 @@ class Program
                 {
                     monster.SP = (float)Rnd.NextDouble() * (MaxSp - MinSp) + MinSp;
 
-                    Input.ReplaceInput(); // Cursor auf die erste Stelle der obere Zeile setzen.
+                    Input.SetCursorAtTopLine(); // Cursor auf die erste Stelle der obere Zeile setzen.
 
                     Console.WriteLine((int)monster.SP);
                 }
@@ -398,9 +414,9 @@ class Program
         Console.WriteLine();
         Console.WriteLine($"Gib die ID-Nummer ein: {index1} = {_monster1.Race} oder {index2} = {_monster2.Race}");
         Console.WriteLine();
-        
+
         int inputNum = 0;
-        
+
         while (!(inputNum == index1 || inputNum == index2)) // Solange der Wert nicht im Bereich liegt, führt nochmal aus.
         {
             Input.NewPlayerInput(); // Leert die obere Zeile und setzt den Cursor am Anfang der Zeile.
@@ -412,7 +428,7 @@ class Program
 
         WinnerChoice = Races[inputNum]; // string Rasse
 
-        Input.ReplaceInput(); // Cursor auf die erste Stelle der obere Zeile setzen.
+        Input.SetCursorAtTopLine(); // Cursor auf die erste Stelle der obere Zeile setzen.
 
         Console.WriteLine(WinnerChoice);
         Console.WriteLine();
@@ -442,7 +458,7 @@ class Program
     private static void Fight(MonsterBase monster1, MonsterBase monster2)
     {
         Output.PrintLabel();
-        Output.PrintLine(); 
+        Output.PrintLine();
         Console.WriteLine($"{monster1.Race} gegen {monster2.Race}! Der Kampf beginnt!");
         Console.WriteLine();
 
@@ -484,7 +500,7 @@ class Program
             DisplayBar.Print(monster1, monster2);
 
             // Nach jede Runde werden Werte in Array gespeichert.
-            
+
             CoordinateSystem.InitializeValues(monster1);
             CoordinateSystem.InitializeValues(monster2);
 
