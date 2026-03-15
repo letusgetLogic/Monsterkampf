@@ -27,3 +27,11 @@ Die Aufgaben waren
 
 ------------------------------------------------------------------------
 
+## Spiel
+Um das Spiel auszuführen, müssen folgende Schritte gemacht werden:
+1. Downloade den Ordner "Monsterkampf-Build.zip"
+2. Extrahiere den Ordner
+3. Wähle .exe-Datei aus
+4. Lass den Kampf beginnen!
+   
+------------------------------------------------------------------------
