@@ -136,7 +136,7 @@ class Goblin : MonsterBase
     /// </summary>
     public static void PrintResult()
     {
-        Console.WriteLine($"Goblin: {CountCrit} Kritische Treffer / {CountIgnore} Schwachpunkt-Treffer / {CountDodge} Ausweichen-Aktionen / {CountRound} Runden.");
+        Console.WriteLine($"Goblin: {CountRound} Runden / {CountCrit} Kritische Treffer / {CountIgnore} Schwachpunkt-Treffer / {CountDodge} Ausweichen-Aktionen.");
         Console.WriteLine();
     }
 }

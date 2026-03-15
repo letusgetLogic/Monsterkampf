@@ -2,9 +2,7 @@
 
 class Output
 {
-    private static readonly int DistanceBufferWidth = (int)(Console.BufferWidth * 0.5f);
     private static readonly int HalfLabelLength = 25;
-
 
     /// <summary>
     /// Label ausprinten.
@@ -111,7 +109,7 @@ class Output
     /// </summary>
     private static void PrintLabelDistance()
     {
-        int distanceSpace = DistanceBufferWidth - HalfLabelLength;
+        int distanceSpace = (int)(Console.BufferWidth * 0.5f) - HalfLabelLength;
 
         for (int i = 0; i < distanceSpace; i++) 
             Console.Write(" ");

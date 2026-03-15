@@ -61,10 +61,11 @@ class Program
 
         Output.PrintResult(_monster1, _monster2);
 
+        Console.WriteLine("Drück beliebige Taste um neues Spiel zu starten!");
         Console.ReadLine();
         Output.PrintLine();
         Output.PrintBufferSpace();
-        Output.PrintLine();
+        Console.SetCursorPosition(0, 0);
         Main(args);
     }
 
